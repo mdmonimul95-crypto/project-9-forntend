@@ -2,6 +2,8 @@ import React from 'react';
 // import DetailsCard from '@/components/DetailsCard';
 import Image from 'next/image';
 import { MapPin,Armchair,CircleCheckBig  } from "lucide-react";
+import { Button, ButtonGroup } from '@heroui/react';
+import { EditModal } from '@/components/EditModal';
 
 const Details = async({params}) => {
     const {id} = await params
@@ -30,10 +32,10 @@ const Details = async({params}) => {
             <div className='bg-white gap-3'>
                 
                          <div className='  ml-5 mr-15 gap-2'>
-                            <div>
+                            <div className='flex justify-between'> <div>
                                <p className='text-3xl'>{explore.category}</p> 
-                               <p className='text-6xl'>{explore.carName}</p> 
-                            
+                               <p className='text-6xl'>{explore.carName}</p> </div>
+                                 <EditModal explore={explore} params={params}/>
                             </div>
                             <br/>
                             <div className=''><span className='text-4xl'>{explore.price}</span>/per day</div>
