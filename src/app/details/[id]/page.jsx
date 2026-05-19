@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { MapPin,Armchair,CircleCheckBig  } from "lucide-react";
 import { Button, ButtonGroup } from '@heroui/react';
 import { EditModal } from '@/components/EditModal';
+import { DeleteAlert } from '@/components/DeleteAlart';
 
 const Details = async({params}) => {
     const {id} = await params
@@ -36,6 +37,7 @@ const Details = async({params}) => {
                                <p className='text-3xl'>{explore.category}</p> 
                                <p className='text-6xl'>{explore.carName}</p> </div>
                                  <EditModal explore={explore} params={params}/>
+                                 <DeleteAlert explore={explore} params={params}/>
                             </div>
                             <br/>
                             <div className=''><span className='text-4xl'>{explore.price}</span>/per day</div>
