@@ -1,7 +1,7 @@
 "use client";
 import { FcGoogle } from "react-icons/fc";
 import { Card, Separator } from "@heroui/react";
-
+import toast from "react-hot-toast";
 import {
   Button,
   Description,
@@ -17,6 +17,7 @@ import { redirect } from "next/navigation";
 const SignUpPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(e)
 
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
@@ -27,14 +28,14 @@ const SignUpPage = () => {
       name: user.name,
       image: user.image,
     });
+    console.log(data)
 
     if (data) {
       redirect("/");
     }
 
     if (error) {
-      // toast
-      alert("Error");
+     toast.error(error.message);
     }
   };
 
