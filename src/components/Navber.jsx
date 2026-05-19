@@ -35,7 +35,7 @@ const Navber = () => {
             </li>
            
             <li>
-                <Link href={"/singup"}>Singup</Link>
+                <Link href={"/signup"}>Singup</Link>
             </li>
         </ul>
        </nav>
