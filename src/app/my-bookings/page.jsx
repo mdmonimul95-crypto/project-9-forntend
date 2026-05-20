@@ -1,5 +1,6 @@
 
 import { auth } from "@/lib/auth";
+import { BookingCancelAlert } from "@/components/BookingCancelAlert";
 import { headers } from "next/headers";
 import Image from "next/image";
 
@@ -17,6 +18,7 @@ const MyBookingPage = async () => {
     }
   });
   const bookings = await res.json();
+  
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -45,7 +47,8 @@ const MyBookingPage = async () => {
               <p className="text-3xl font-bold text-cyan-500">
                 ${booking.price}
               </p>
-
+               
+               <BookingCancelAlert bookingId={booking._id} />
              
             </div>
           </div>
