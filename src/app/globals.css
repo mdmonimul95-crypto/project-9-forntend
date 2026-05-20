@@ -1,3 +1,9 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
+li{
+    list-style:none;
+}
+/* .button--secondary{
+    padding: 10px;
+} */

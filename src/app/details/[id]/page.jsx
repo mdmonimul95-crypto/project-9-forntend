@@ -5,6 +5,7 @@ import { MapPin,Armchair,CircleCheckBig  } from "lucide-react";
 import { Button, ButtonGroup } from '@heroui/react';
 import { EditModal } from '@/components/EditModal';
 import { DeleteAlert } from '@/components/DeleteAlart';
+import  BookingCard from '@/components/BookingCard';
 
 const Details = async({params}) => {
     const {id} = await params
@@ -46,7 +47,8 @@ const Details = async({params}) => {
                          </div>
                          <div className='flex gap-2 '><MapPin/> {explore.Location}</div>
                          <div className='flex gap-2'><Armchair /> {explore.Seat}</div>
-                         <div className='flex gap-2'><CircleCheckBig /> {explore.availability}</div>
+                         <div className='flex gap-2 '><CircleCheckBig /> {explore.availability}</div>
+                         <BookingCard explore={explore}/> 
             </div>
         </div>
     );
