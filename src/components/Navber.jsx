@@ -29,7 +29,7 @@ const Navber = () => {
                 <Link href={"/explore-cars"}>Explore Cars</Link>
             </li>
             <li>
-                <Link href={"/my-booking"}> My booking </Link>
+                <Link href={"/my-bookings"}> My booking </Link>
             </li>
             <li>
                 <Link href={"/add-car"}> Add Car </Link>
