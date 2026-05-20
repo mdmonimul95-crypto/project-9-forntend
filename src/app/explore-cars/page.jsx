@@ -1,24 +1,48 @@
-import ExploreCard from '@/components/ExploreCard';
-import React from 'react';
+import ExploreCard from "@/components/ExploreCard";
+import React from "react";
 
-const Explore = async() => {
-    const res = await fetch('http://localhost:8000/explore')
-    const explore = await res.json()
-    console.log(explore)
-    return (
-        <div className='bg-[#F0F3FF]'>
-            <h1>Explore Cars</h1>
-            <span>Find a car that<br/> matches the trip.</span><br/>
-            <span>Search runs across every listing; the type filter shows only that category. Switching one <br/> clears the other so they never stack.</span>
+const Explore = async () => {
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
-                {
-                    explore.map(explore => <ExploreCard key={explore._id} explore={explore}/>)
-                    
-                }
-            </div>
-        </div>
-    );
+  const res = await fetch("http://localhost:8000/explore", {
+    cache: "no-store",
+  });
+
+  const explore = await res.json();
+
+  return (
+    <div className="bg-[#F0F3FF] py-12 px-4 sm:px-6 md:px-10 lg:px-16">
+
+      {/* Heading */}
+      <div className="text-center mb-14">
+
+        <p className="text-[#9d4300] text-sm sm:text-base font-semibold tracking-[3px] uppercase">
+          Premium Collection
+        </p>
+
+         <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-extrabold text-black leading-tight">
+              Explore Our <span className="text-[#9d4300]">Luxury Cars</span>
+         </h1>
+
+        <p className="mt-6 text-base sm:text-lg text-gray-600 leading-8 max-w-3xl mx-auto">
+           Discover premium vehicles crafted for comfort, speed, and unforgettable
+          journeys. Choose the perfect ride that matches your lifestyle and travel needs.
+        </p>
+
+     </div>
+
+      {/* Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+
+        {explore.map((explore) => (
+          <ExploreCard
+            key={explore._id}
+            explore={explore}
+          />
+        ))}
+
+      </div>
+    </div>
+  );
 };
 
 export default Explore;
