@@ -184,7 +184,7 @@ export default function Footer() {
         </div>
 
        
-        <div className="border-t border-gray-300 mt-10 pt-5 text-center text-xs text-gray-400">
+        <div className="border-t border-gray-400 mt-10 pt-5 text-center text-xs text-gray-500">
           © 2024 DriveFleet Luxury Car Rental. All rights reserved.
         </div>
 
