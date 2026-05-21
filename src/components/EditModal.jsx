@@ -46,7 +46,7 @@ export function EditModal({ explore }) {
                             className=" space-y-8 "
                           >
                             <div className="grid md:mx-1 grid-cols-1 md:grid-cols-2 gap-8">
-                              {/* Destination Name */}
+                              
                               <div className="md:col-span-2">
                                 <TextField defaultValue={explore.carName} name="carName" isRequired>
                                   <Label className="text-sm font-medium">Car Name</Label>
@@ -62,7 +62,7 @@ export function EditModal({ explore }) {
                                 <FieldError />
                               </TextField>
                 
-                              {/* Category - Updated Select Component */}
+                             
                               <div>
                                 <Select
                                   name="category"
@@ -137,7 +137,7 @@ export function EditModal({ explore }) {
                                 </TextField>
                               </div>
                 
-                              {/* Image URL - Removed preview */}
+                              
                               <div className="md:col-span-2">
                                 <TextField defaultValue={explore.imageUrl} name="imageUrl" isRequired>
                                   <Label>Image URL</Label>
@@ -150,7 +150,7 @@ export function EditModal({ explore }) {
                                 </TextField>
                               </div>
                 
-                              {/* Description */}
+                              
                               <div className="md:col-span-2">
                                 <TextField defaultValue={explore.description} name="description" isRequired>
                                   <Label>Description</Label>
@@ -173,7 +173,7 @@ export function EditModal({ explore }) {
                               </div>
                             </div>
                 
-                            {/* Buttons */}
+                           
                             <Button  type="submit" slot="close">Save</Button>
                             
                           </form>

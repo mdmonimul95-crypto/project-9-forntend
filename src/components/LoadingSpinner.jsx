@@ -12,7 +12,7 @@ const LoadingSpinner = () => {
           color="warning"
         />
 
-        <p className="text-[#9d4300] text-lg font-semibold animate-pulse">
+        <p className="text-[#9d4300] text-3xl font-semibold animate-pulse">
           Loading DriveFleet...
         </p>
 

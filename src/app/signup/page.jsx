@@ -33,7 +33,7 @@ const SignUpPage = () => {
     if (data) {
          toast.success("Account created successfully 🎉");
         
-        redirect("/");
+        redirect("/login");
     }
      
     
@@ -122,7 +122,7 @@ const SignUpPage = () => {
               <Separator/>
             </div>
         <div>
-            <Button onClick={handleGoogleSignin} variant="outline" className={'w-full rounded-none'}><FcGoogle /> Sign in with Google</Button>
+            <Button onClick={handleGoogleSignin} variant="outline" className={'w-full rounded-none'}><FcGoogle /> Sign up with Google</Button>
         </div>
       </Card>
     </div>

@@ -29,7 +29,7 @@ const Navber = () => {
 
         <Link
           href="/"
-          className="text-[#9d4300] gap-2 items-center flex text-2xl font-bold"
+          className="text-[#9d4300] gap-2 items-center flex text-xl font-bold"
         >
           <Car className="h-8 w-8 md:h-10 md:w-10" />
           <span>DriveFleet</span>
@@ -77,19 +77,17 @@ const Navber = () => {
       
         <div className="hidden md:flex items-center gap-3">
 
-          {isPending ? (
-            <LoadingSpinner />
-          ) : user ? (
+          { user ? (
             <Dropdown>
               <Button className="bg-[#9d4300] text-white">
-                <div className="flex items-center gap-2">
-                  <Avatar
-                    src={user?.image}
-                    name={user?.name}
-                    size="sm"
-                  />
-                  <span>{user?.name}</span>
-                </div>
+                   <div className="flex items-center gap-2">
+             <Avatar
+              src={user?.image || ""}
+                name={user?.name || "User"}
+             size="sm"
+             />
+             <span>{user?.name || "Guest"}</span>
+                   </div>
               </Button>
 
               <Dropdown.Popover>
@@ -126,14 +124,7 @@ const Navber = () => {
                 </Button>
               </Link>
 
-              <Link href="/signup">
-                <Button
-                  variant="bordered"
-                  className="bg-[#9d4300] text-white"
-                >
-                  Sign Up
-                </Button>
-              </Link>
+            
 
             </div>
           )}
@@ -180,9 +171,7 @@ const Navber = () => {
 
           <div className="mt-3">
 
-            {isPending ? (
-              <LoadingSpinner />
-            ) : user ? (
+            { user ? (
               <div className="flex flex-col gap-3">
 
                 <div className="flex py-1 items-center gap-2">
@@ -213,15 +202,7 @@ const Navber = () => {
                   </Button>
                 </Link>
 
-                <Link href="/signup">
-                  <Button
-                    fullWidth
-                    variant="bordered"
-                    className="bg-[#9d4300] text-white"
-                  >
-                    Sign Up
-                  </Button>
-                </Link>
+                
 
               </div>
             )}

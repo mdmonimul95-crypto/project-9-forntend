@@ -14,6 +14,8 @@ const BookingCard = ({ explore }) => {
   const user = session?.user;
 
   const [departureDate, setDepartureDate] = useState(null);
+  const [driverNeeded, setDriverNeeded] = useState("");
+  const [specialNote, setSpecialNote] = useState("");
 
   const { price, _id, carName, imageUrl, country } = explore;
 
@@ -27,7 +29,9 @@ const BookingCard = ({ explore }) => {
       price,
       imageUrl,
       country,
-      departureDate: new Date(departureDate),
+      departureDate: new Date(),
+      driverNeeded,
+      specialNote,
     };
 
     const res = await fetch(
@@ -42,6 +46,7 @@ const BookingCard = ({ explore }) => {
     );
 
     const data = await res.json();
+    console.log(data)
 
     if (data) {
       toast.success("You booked successfully!");
@@ -59,22 +64,36 @@ const BookingCard = ({ explore }) => {
 
       <p className="text-sm text-muted">per person</p>
 
-      <DateField
-        onChange={setDepartureDate}
-        className="w-[256px]"
-        name="date"
-      >
-        <Label>Departure Date</Label>
 
-        <DateField.Group>
-          <DateField.Input>
-            {(segment) => (
-              <DateField.Segment segment={segment} />
-            )}
-          </DateField.Input>
-        </DateField.Group>
-      </DateField>
+      <div className="mt-4">
+        <label className="text-sm font-medium">
+          Driver Needed
+        </label>
 
+        <select
+          value={driverNeeded}
+          onChange={(e) => setDriverNeeded(e.target.value)}
+          className="w-full border p-2 mt-1"
+        >
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div className="mt-4">
+        <label className="text-sm font-medium">
+          Special Note
+        </label>
+
+        <textarea
+          value={specialNote}
+          onChange={(e) => setSpecialNote(e.target.value)}
+          placeholder="Write your special note..."
+          className="w-full border p-2 mt-1"
+          rows={4}
+        />
+      </div>
       <Button
         onClick={handleBooking}
         className="w-full rounded-none bg-cyan-500"

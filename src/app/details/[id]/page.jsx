@@ -70,7 +70,7 @@ const Details = async ({ params }) => {
           </div>
         </div>
 
-        {/* Right Side */}
+        
         <div className="bg-white rounded-3xl shadow-md p-6 sm:p-8">
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 mb-8">

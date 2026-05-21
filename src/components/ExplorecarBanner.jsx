@@ -1,7 +1,7 @@
 import ExploreCard from "@/components/ExploreCard";
 import React from "react";
 
-const Explore = async () => {
+const ExplorecarBanner = async () => {
 
   const res = await fetch("http://localhost:8000/explore", {
     cache: "no-store",
@@ -45,4 +45,4 @@ const Explore = async () => {
   );
 };
 
-export default Explore;
+export default ExplorecarBanner;

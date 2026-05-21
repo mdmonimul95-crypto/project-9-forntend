@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import Image from "next/image";
 
 const MyBookingPage = async () => {
-
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -22,12 +21,30 @@ const MyBookingPage = async () => {
 
   const bookings = await res.json();
 
+
+  const totalPrice = bookings.reduce((sum, booking) => {
+    return sum + Number(booking.price || 0);
+  }, 0);
+
+  const totalBooking = bookings.length;
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-      <h1 className="text-3xl sm:text-4xl font-bold mb-8">
+      <h1 className="text-3xl sm:text-4xl font-bold mb-2">
         My Bookings
       </h1>
+
+      <p className="text-xl font-semibold text-cyan-600 mb-2">
+        Total Booking: {totalBooking}
+      </p>
+
+
+      <p className="text-xl font-semibold text-cyan-600 mb-8">
+        Total Price: ${totalPrice}
+      </p>
+
+
 
       <div className="space-y-6">
 
@@ -37,6 +54,7 @@ const MyBookingPage = async () => {
             key={booking._id}
             className="flex flex-col md:flex-row gap-5 border rounded-2xl p-4 sm:p-5 bg-white shadow-sm"
           >
+
 
             <Image
               src={booking.imageUrl}

@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, Separator } from "@heroui/react";
+import Link from "next/link";
 import {
   Button,
   Description,
@@ -32,17 +33,21 @@ const LoginPage = () => {
        toast.success("Login successfully 🎉");
       redirect("/");
     }
-
     if (error) {
-     toast.error("error");
-    }
-  };
+        toast.error("Please register first");
 
-  const handleGoogleSignin = async () => {
+     setTimeout(() => {
+     window.location.href = "/signup";
+     }, 1500);
+     }
+    };
+   
+
+    const handleGoogleSignin = async () => {
     await authClient.signIn.social({
       provider: "google",
     });
-  };
+    };
 
   return (
     <div className="max-w-xl mx-auto">
@@ -113,7 +118,17 @@ const LoginPage = () => {
             <FcGoogle /> Sign in with Google
           </Button>
         </div>
+        <p className="text-center mt-4 text-sm">
+       Don&apos;t have an account?{" "}
+       <Link
+       href="/signup"
+       className="text-cyan-500 font-semibold hover:underline"
+       >
+       Register
+       </Link>
+      </p>
       </Card>
+     
     </div>
   );
 };

@@ -1,9 +1,13 @@
+import ExplorecarBanner from "@/components/ExplorecarBanner";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import Image from "next/image";
 import Link from "next/link";
 // import banner from "@/public/assets/banner.png";
 
 const Banner = () => {
   return (
+    <>
     <div className="flex flex-col lg:flex-row">
       
       <div className="max-w-fit py-10 bg-[#F0F3FF] w-full">
@@ -65,7 +69,11 @@ const Banner = () => {
         />
       </div>
     </div>
-  );
+    <ExplorecarBanner/>
+    <WhyChooseUs/>
+    <TestimonialsSection/>
+    </>
+  ); 
 };
 
 export default Banner;

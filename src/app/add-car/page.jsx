@@ -43,7 +43,7 @@ const AddCarPage = () => {
       <form onSubmit={onSubmit} className="p-10 space-y-8">
         <div className="grid md:mx-40 grid-cols-1 md:grid-cols-2 gap-8">
 
-          {/* Car Name */}
+          
           <div className="md:col-span-2">
             <TextField name="carName" isRequired>
               <Label>Car Name</Label>
@@ -52,14 +52,14 @@ const AddCarPage = () => {
             </TextField>
           </div>
 
-          {/* Location */}
+          
           <TextField name="Location" isRequired>
             <Label>Pickup Location</Label>
             <Input placeholder="Dhaka" className="rounded-2xl" />
             <FieldError />
           </TextField>
 
-          {/* Category */}
+         
           <div>
             <Select
               name="category"
@@ -85,14 +85,14 @@ const AddCarPage = () => {
             </Select>
           </div>
 
-          {/* Price */}
+        
           <TextField name="price" type="number" isRequired>
             <Label>Daily Rent Price (USD)</Label>
             <Input type="number" placeholder="1299" className="rounded-2xl" />
             <FieldError />
           </TextField>
 
-          {/* Seat */}
+          
           <div className="md:col-span-2">
             <TextField name="Seat" type="number" isRequired>
               <Label>Seat Capacity</Label>
@@ -101,7 +101,7 @@ const AddCarPage = () => {
             </TextField>
           </div>
 
-          {/* Image */}
+          
           <div className="md:col-span-2">
             <TextField name="imageUrl" isRequired>
               <Label>Image URL</Label>
@@ -114,7 +114,7 @@ const AddCarPage = () => {
             </TextField>
           </div>
 
-          {/* Description */}
+          
           <div className="md:col-span-2">
             <TextField name="description" isRequired>
               <Label>Description</Label>
@@ -126,7 +126,7 @@ const AddCarPage = () => {
             </TextField>
           </div>
 
-          {/* Availability */}
+          
           <div className="md:col-span-2">
             <TextField name="availability" isRequired>
               <Label>Availability Status</Label>
@@ -137,7 +137,7 @@ const AddCarPage = () => {
 
         </div>
 
-        {/* Submit */}
+        
         <Button
           type="submit"
           className="w-full bg-cyan-500 text-white rounded-xl"
