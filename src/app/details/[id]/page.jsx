@@ -30,7 +30,7 @@ const Details = async ({ params }) => {
     token = null; 
   }
 
-  const res = await fetch(`http://localhost:8000/details/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/details/${id}`);
   
 
   const explore = await res.json();

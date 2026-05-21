@@ -13,7 +13,7 @@ const Explore = async ({ searchParams }) => {
   if (category) queryString.set("category", category);
 
    const res = await fetch(
-     `http://localhost:8000/explore-cars?${queryString.toString()}`,
+     `${process.env.NEXT_PUBLIC_SERVER_URL}/explore-cars?${queryString.toString()}`,
   { cache: "no-store" }
   );
 

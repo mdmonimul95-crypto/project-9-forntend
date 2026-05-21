@@ -3,7 +3,7 @@ import React from "react";
 
 const ExplorecarBanner = async () => {
 
-  const res = await fetch("http://localhost:8000/explore", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/explore`, {
     cache: "no-store",
   });
 

@@ -13,7 +13,7 @@ export function DeleteAlert({ explore }) {
   const handleDelete = async () => {
 
     const res = await fetch(
-      `http://localhost:8000/explore/${_id}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/explore/${_id}`,
       {
         method: "DELETE",
       }

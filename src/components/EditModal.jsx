@@ -14,7 +14,7 @@ export function EditModal({ explore }) {
     const data = Object.fromEntries(formData.entries());
     console.log(data,"from data");
 
-    const res = await fetch(`http://localhost:8000/details/${explore._id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/details/${explore._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
