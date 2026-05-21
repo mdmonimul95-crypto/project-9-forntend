@@ -10,23 +10,39 @@ import {
 import { EditModal } from "@/components/EditModal";
 import { DeleteAlert } from "@/components/DeleteAlart";
 import BookingCard from "@/components/BookingCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation"; 
+
 
 const Details = async ({ params }) => {
 
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:8000/details/${id}`, {
-    cache: "no-store",
-  });
+ 
+  let token;
+  try {
+    const result = await auth.api.getToken({
+      headers: await headers()
+    });
+    token = result?.token;
+  } catch (error) {
+    token = null; 
+  }
+
+  const res = await fetch(`http://localhost:8000/details/${id}`);
+  
 
   const explore = await res.json();
 
+ 
+ 
   return (
     <div className="bg-[#F0F3FF] min-h-screen px-4 sm:px-6 md:px-10 lg:px-20 py-10">
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-        {/* Left Side */}
+        
         <div className="bg-white rounded-3xl overflow-hidden shadow-md">
 
           <Image
@@ -75,9 +91,7 @@ const Details = async ({ params }) => {
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 mb-8">
 
-            <EditModal explore={explore} params={params} />
-
-            <DeleteAlert explore={explore} params={params} />
+           
 
           </div>
 

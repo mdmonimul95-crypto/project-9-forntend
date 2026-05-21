@@ -11,27 +11,43 @@ import {
   TextField,
 } from "@heroui/react";
 import React from "react";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const AddCarPage = () => {
+  const { data: session } = authClient.useSession();
+  const router = useRouter();
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const explore = Object.fromEntries(formData.entries());
 
+
+    explore.userId = session?.user?.id;
+
     console.log(explore);
+
+    const { data } = await authClient.getSession();
+    const token = data?.session?.token;
 
     const res = await fetch("http://localhost:8000/add-car", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(explore),
     });
 
-    const data = await res.json();
-    console.log(data);
-    
+    const result = await res.json();
+    console.log(result);
+
+    if (result.insertedId) {
+      alert("Car added successfully!");
+      router.push("/my-added-cars");
+    }
   };
 
   return (
@@ -43,7 +59,7 @@ const AddCarPage = () => {
       <form onSubmit={onSubmit} className="p-10 space-y-8">
         <div className="grid md:mx-40 grid-cols-1 md:grid-cols-2 gap-8">
 
-          
+
           <div className="md:col-span-2">
             <TextField name="carName" isRequired>
               <Label>Car Name</Label>
@@ -52,14 +68,14 @@ const AddCarPage = () => {
             </TextField>
           </div>
 
-          
+
           <TextField name="Location" isRequired>
             <Label>Pickup Location</Label>
             <Input placeholder="Dhaka" className="rounded-2xl" />
             <FieldError />
           </TextField>
 
-         
+
           <div>
             <Select
               name="category"
@@ -85,14 +101,14 @@ const AddCarPage = () => {
             </Select>
           </div>
 
-        
+
           <TextField name="price" type="number" isRequired>
             <Label>Daily Rent Price (USD)</Label>
             <Input type="number" placeholder="1299" className="rounded-2xl" />
             <FieldError />
           </TextField>
 
-          
+
           <div className="md:col-span-2">
             <TextField name="Seat" type="number" isRequired>
               <Label>Seat Capacity</Label>
@@ -101,7 +117,7 @@ const AddCarPage = () => {
             </TextField>
           </div>
 
-          
+
           <div className="md:col-span-2">
             <TextField name="imageUrl" isRequired>
               <Label>Image URL</Label>
@@ -114,7 +130,7 @@ const AddCarPage = () => {
             </TextField>
           </div>
 
-          
+
           <div className="md:col-span-2">
             <TextField name="description" isRequired>
               <Label>Description</Label>
@@ -126,7 +142,7 @@ const AddCarPage = () => {
             </TextField>
           </div>
 
-          
+
           <div className="md:col-span-2">
             <TextField name="availability" isRequired>
               <Label>Availability Status</Label>
@@ -137,7 +153,7 @@ const AddCarPage = () => {
 
         </div>
 
-        
+
         <Button
           type="submit"
           className="w-full bg-cyan-500 text-white rounded-xl"

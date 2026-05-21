@@ -4,34 +4,29 @@ import { authClient } from "@/lib/auth-client";
 import { TrashBin } from "@gravity-ui/icons";
 import { AlertDialog, Button } from "@heroui/react";
 
-export function BookingCancelAlert({bookingId}) {
+export function BookingCancelAlert({ bookingId }) {
 
-    const handleCancelBooking = async() =>{
+  const handleCancelBooking = async () => {
 
-      
+    // Client-side থেকে session নাও
+    const { data: session } = await authClient.getSession();
+    const token = session?.session?.token; // better-auth এর token field
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${bookingId}`, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json",
-                authorization: `Bearer `
-            }
-        })
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${bookingId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    });
 
-        const data = await res.json();
-
-        window.location.reload();
-
-        
-    }
-
+    const data = await res.json();
+    window.location.reload();
+  };
 
   return (
     <AlertDialog>
-      <Button
-        className={" rounded-none border-red-500 text-red-500"}
-        variant="outline"
-      >
+      <Button className={"rounded-none border-red-500 text-red-500"} variant="outline">
         <TrashBin /> Cancel
       </Button>
 
@@ -41,16 +36,13 @@ export function BookingCancelAlert({bookingId}) {
             <AlertDialog.CloseTrigger />
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
-              <AlertDialog.Heading>
-                Cancel Project permanently?
-              </AlertDialog.Heading>
+              <AlertDialog.Heading>Cancel Booking permanently?</AlertDialog.Heading>
             </AlertDialog.Header>
             <AlertDialog.Body>
+              এই booking টি permanently delete হয়ে যাবে।
             </AlertDialog.Body>
             <AlertDialog.Footer>
-              <Button slot="close" variant="tertiary">
-                Cancel
-              </Button>
+              <Button slot="close" variant="tertiary">Cancel</Button>
               <Button onClick={handleCancelBooking} slot="close" variant="danger">
                 Delete
               </Button>

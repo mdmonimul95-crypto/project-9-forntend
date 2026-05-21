@@ -16,11 +16,13 @@ import Image from 'next/image';
 const Navber = () => {
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
+  console.log("user:", user);
 
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSignOut = async () => {
     await authClient.signOut();
+    window.location.href = "/";
   };
 
   return (
@@ -35,7 +37,7 @@ const Navber = () => {
           <span>DriveFleet</span>
         </Link>
 
-        
+
         <ul className="hidden md:flex items-center gap-6 font-medium text-gray-700">
           <li>
             <Link
@@ -74,21 +76,23 @@ const Navber = () => {
           </li>
         </ul>
 
-      
+
         <div className="hidden md:flex items-center gap-3">
 
-          { user ? (
+          {user ? (
             <Dropdown>
               <Button className="bg-[#9d4300] text-white">
-                   <div className="flex items-center gap-2">
-             <Avatar
-              src={user?.image || ""}
-                name={user?.name || "User"}
-             size="sm"
-             />
-             <span>{user?.name || "Guest"}</span>
-                   </div>
+                <div className="flex items-center gap-2">
+                  <img
+                    src={user?.image || ""}
+                    alt={user?.name || "User"}
+                    className="w-8 h-8 rounded-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <span>{user?.name || "Guest"}</span>
+                </div>
               </Button>
+
 
               <Dropdown.Popover>
                 <Dropdown.Menu>
@@ -101,7 +105,7 @@ const Navber = () => {
                     <Label>My Booking</Label>
                   </Dropdown.Item>
 
-                  <Dropdown.Item href="/my-cars">
+                  <Dropdown.Item href="/my-added-cars">
                     <Label>My Added Cars</Label>
                   </Dropdown.Item>
 
@@ -124,13 +128,13 @@ const Navber = () => {
                 </Button>
               </Link>
 
-            
+
 
             </div>
           )}
         </div>
 
-     
+
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden"
@@ -139,7 +143,7 @@ const Navber = () => {
         </button>
       </div>
 
-    
+
       {menuOpen && (
         <div className="md:hidden px-4 pb-5 border-t bg-white">
 
@@ -171,13 +175,15 @@ const Navber = () => {
 
           <div className="mt-3">
 
-            { user ? (
+            {user ? (
               <div className="flex flex-col gap-3">
 
                 <div className="flex py-1 items-center gap-2">
-                  <Avatar
-                    src={user?.image}
-                    name={user?.name}
+                  <img
+                    src={user?.image || ""}
+                    alt={user?.name || "User"}
+                    className="w-8 h-8 rounded-full object-cover"
+                    referrerPolicy="no-referrer"
                   />
                   <span>{user?.name}</span>
                 </div>
@@ -202,7 +208,7 @@ const Navber = () => {
                   </Button>
                 </Link>
 
-                
+
 
               </div>
             )}

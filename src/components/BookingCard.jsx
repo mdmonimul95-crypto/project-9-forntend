@@ -18,6 +18,7 @@ const BookingCard = ({ explore }) => {
   const [specialNote, setSpecialNote] = useState("");
 
   const { price, _id, carName, imageUrl, country } = explore;
+  
 
   const handleBooking = async () => {
     const bookingData = {
@@ -33,13 +34,14 @@ const BookingCard = ({ explore }) => {
       driverNeeded,
       specialNote,
     };
-
+     
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/booking`,
       {
         method: "POST",
         headers: {
           "content-type": "application/json",
+             authorization: `Bearer`
         },
         body: JSON.stringify(bookingData),
       }
@@ -47,10 +49,18 @@ const BookingCard = ({ explore }) => {
 
     const data = await res.json();
     console.log(data)
-
     if (data) {
-      toast.success("You booked successfully!");
-      router.push("/my-bookings");
+
+      if (session) {
+
+        alert("Booking successful!");
+
+        router.push("/my-bookings");
+
+      } else {
+
+        router.push("/login");
+      }
     }
   };
 
