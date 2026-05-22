@@ -170,6 +170,11 @@ const Navber = () => {
                 Add Car
               </Link>
             </li>
+            <li>
+              <Link  href="/my-added-cars">
+                My Added Car
+              </Link>
+            </li>
 
           </ul>
 
