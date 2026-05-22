@@ -28,39 +28,45 @@ const LoginPage = () => {
       password: user.password,
     });
 
-
     if (data) {
-       toast.success("Login successfully 🎉");
+      toast.success("Login successfully 🎉");
       redirect("/");
     }
+
     if (error) {
-        toast.error("Please register first");
+      toast.error("Please register first");
 
-     setTimeout(() => {
-     window.location.href = "/signup";
-     }, 1500);
-     }
-    };
-   
+      setTimeout(() => {
+        window.location.href = "/signup";
+      }, 1500);
+    }
+  };
 
-    const handleGoogleSignin = async () => {
+  const handleGoogleSignin = async () => {
     await authClient.signIn.social({
       provider: "google",
     });
-    };
+  };
 
   return (
-    <div className="max-w-xl mx-auto">
-      <div className="text-center my-3">
-        <h1 className="text-2xl font-bold">Login</h1>
-        <p>Start your adventure with Wanderlust</p>
+    <div className="w-full max-w-xl mx-auto px-4 sm:px-6 py-6">
+      <div className="text-center my-4">
+        <h1 className="text-2xl sm:text-3xl font-bold">Login</h1>
+        <p className="text-sm sm:text-base">
+          Start your adventure with Wanderlust
+        </p>
       </div>
-      <Card className="items-center border rounded-none">
-        <Form onSubmit={onSubmit} className="flex w-130 flex-col gap-4">
+
+      <Card className="w-full items-center border rounded-none p-4 sm:p-6">
+        <Form
+          onSubmit={onSubmit}
+          className="flex w-full flex-col gap-4"
+        >
           <TextField
             isRequired
             name="email"
             type="email"
+            className="w-full"
             validate={(value) => {
               if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                 return "Please enter a valid email address";
@@ -72,11 +78,13 @@ const LoginPage = () => {
             <Input placeholder="john@example.com" />
             <FieldError />
           </TextField>
+
           <TextField
             isRequired
             minLength={8}
             name="password"
             type="password"
+            className="w-full"
             validate={(value) => {
               if (value.length < 8) {
                 return "Password must be at least 8 characters";
@@ -92,43 +100,52 @@ const LoginPage = () => {
           >
             <Label>Password</Label>
             <Input placeholder="Enter your password" />
+
             <Description>
               Must be at least 8 characters with 1 uppercase and 1 number
             </Description>
+
             <FieldError />
           </TextField>
-          <div className="flex justify-center gap-2">
-            <Button className={"rounded-none w-full bg-cyan-500"} type="submit">
+
+          <div className="flex justify-center gap-2 w-full">
+            <Button
+              className="rounded-none w-full bg-cyan-500"
+              type="submit"
+            >
               Login
             </Button>
           </div>
         </Form>
 
-        <div className="flex justify-center items-center gap-3">
-          <Separator />
-          <div className="whitespace-nowrap"> Or sign up with </div>
-          <Separator />
+        <div className="flex justify-center items-center gap-3 w-full my-5">
+          <Separator className="flex-1" />
+          <div className="whitespace-nowrap text-sm sm:text-base">
+            Or sign up with
+          </div>
+          <Separator className="flex-1" />
         </div>
-        <div>
+
+        <div className="w-full">
           <Button
             onClick={handleGoogleSignin}
             variant="outline"
-            className={"w-full rounded-none"}
+            className="w-full rounded-none"
           >
             <FcGoogle /> Sign in with Google
           </Button>
         </div>
+
         <p className="text-center mt-4 text-sm">
-       Don&apos;t have an account?{" "}
-       <Link
-       href="/signup"
-       className="text-cyan-500 font-semibold hover:underline"
-       >
-       Register
-       </Link>
-      </p>
+          Don&apos;t have an account?{" "}
+          <Link
+            href="/signup"
+            className="text-cyan-500 font-semibold hover:underline"
+          >
+            Register
+          </Link>
+        </p>
       </Card>
-     
     </div>
   );
 };
